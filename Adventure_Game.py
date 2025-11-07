@@ -165,11 +165,9 @@ if Adv_choice == "cave":
             print("")
             # break
     elif room_choice == "chest":
-        trap_choice = input(str(""" you obtained a gold key!
-                                But when you stashed the key a trapdoor opened under you
-                                you wake up in a pool of water you can go down 2 paths
-                                stairs
-                                pool
+        print("\nyou open the chest and find a gold key!")
+        trap_choice = input(str(""" A pit opens beneath you! You fell!\
+                                you have 2 options to escape: stairs -pool
                                 """).lower())
         if trap_choice == "pool":
             print("you enter the pool and get killed by a merrow")
