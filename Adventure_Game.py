@@ -213,7 +213,7 @@ if Adv_choice == "forest":
         print("You walk down the path and are attack by a Troll")
         
         #Create & Battle Troll enemy
-        Troll = Enemy("Troll", 25, 10, 3, 2)
+        Troll = Enemy("Troll", 20, 10, 3, 2)
         Battle(player, Troll)
 
 
@@ -224,4 +224,51 @@ if Adv_choice == "forest":
         #else:
         #    continue
         
+        print ("""You step over the defeated troll and walk deeper into the forest
+               You find the camp of the trolls...
+               you enter the camp and the King Troll appears!""")
+        King_Troll = Enemy("King Troll", 40, 15, 3, 2)
+        Battle(player, King_Troll)
+
+        #if player["HP"] < 0:
+            #break
+
+        print ("""You step into the middle of the camp and are teleported to a higher plane
+                The Final Boss fight will now commence...""")       
+        god = Enemy("God", 60, 20, 3, 2)
+        Battle(player, god)
+        #if player["HP"] < 0:
+            #break
+        #else:
+            #continue
+    elif path_Choice == "flowers":
+        print("You walk down the flower path and are attacked by a Giant Bee")
         
+        #Create & Battle Giant Bee enemy
+        Giant_Bee = Enemy("Giant Bee", 20, 10, 3, 2)
+        Battle(player, Giant_Bee)
+
+        #if player["HP"] < 0:
+            #break
+        #else:
+            #continue
+
+        print ("""You step over the defeated Giant Bee and walk deeper into the forest
+               You find a beehive hanging from a tree...
+               you approach the beehive the queen bee appears!""")
+        
+        Queen_Bee = Enemy("Wasp", 45, 15, 3, 2)
+        Battle(player, Queen_Bee)
+
+        #if player["HP"] < 0:
+            #break
+
+        print ("""You step into the middle of the clearing and are teleported to a higher plane
+                The Final Boss fight will now commence...""")
+        
+        god = Enemy("God", 60, 20, 3, 2)
+        Battle(player, god)
+        #if player["HP"] < 0:
+            #break
+        #else:
+            #continue
