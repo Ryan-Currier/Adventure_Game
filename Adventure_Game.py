@@ -203,6 +203,8 @@ if Adv_choice == "castle":
             #else:
                 #continue
 
+            print("You have defeated the final boss and completed the Castle Adventure!")
+
 # Forest adventure and choices
 if Adv_choice == "forest":
     print("You have entered the Forest!")
@@ -241,6 +243,9 @@ if Adv_choice == "forest":
             #break
         #else:
             #continue
+
+        print("You have defeated the final boss and completed the Forest Adventure!")
+
     elif path_Choice == "flowers":
         print("You walk down the flower path and are attacked by a Giant Bee")
         
@@ -272,3 +277,5 @@ if Adv_choice == "forest":
             #break
         #else:
             #continue
+
+        print("You have defeated the final boss and completed the Forest Adventure!")
