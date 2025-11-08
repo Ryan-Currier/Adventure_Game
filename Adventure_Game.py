@@ -35,7 +35,7 @@ class Classes():
             "HP" : 90,
             "Moves" : {
             "Back Stab" : 15,
-            "Flash Bomb" : 20}
+            "Flash Step" : 25,}
         }
 
 
@@ -143,18 +143,16 @@ for stat , value in player.stats.items():
     print(f"{stat} : {value}")
             
 
-Adv_choice = input(str("\nYou have 2 paths - Cave or Forest ").lower())
+Adv_choice = input(str("\nYou have 2 paths - Castle or Forest ").lower())
 
 
 #Cave Adventure & All Choices
 
-if Adv_choice == "cave":
-    print("you have chosen the Dwarven Caves!")
+if Adv_choice == "castle":
+    print("you enter the Castle!")
     print("""You enter a dark room!
-          You have 2 objects to interact with
-          bookshelf
-          chest""")
-    room_choice = input(str(" What would you like to interact with? ").lower())
+          You interact with an object: bookshelf - chest""")
+    room_choice = input(str("\nWhat would you like to interact with? ").lower())
     if room_choice == "bookshelf":
         print("\nyou try to pick up a book, but the bookshelf falls and crushes you")
         #so they can exit the while loop
@@ -165,9 +163,11 @@ if Adv_choice == "cave":
             print("")
             # break
     elif room_choice == "chest":
-        print("\nyou open the chest and find a gold key!")
-        trap_choice = input(str(""" A pit opens beneath you! You fell!\
-                                you have 2 options to escape: stairs -pool
+        trap_choice = input(str(""" you obtained a gold key!
+                                But when you stashed the key a trapdoor opened under you
+                                you wake up in a pool of water you can go down 2 paths
+                                stairs
+                                pool
                                 """).lower())
         if trap_choice == "pool":
             print("you enter the pool and get killed by a merrow")
@@ -180,12 +180,48 @@ if Adv_choice == "cave":
                 print("")
                 # break
         elif trap_choice == "stairs":
-            print ("""you have reached a big door with a small golden lock" 
-                   you enter your own gold key 
-                   the door swings open into a big room lit by blue flames
+            print ("""you have reached a big door with a small golden lock. You enter your own gold key the door swings open into a big room lit by blue flames
                    you have to fight a merrow to escape alive!""")
             
             #Creating the merrow enemy
-            merrow = Enemy("Merrow", 40, 15, 3, 2)
-
+            merrow = Enemy("Merrow", 25, 15, 3, 2)
+            #Fighting the enemy
             Battle(player, merrow)
+
+            #if player["HP"] < 0:
+                #break
+            #else:
+                #continue
+            print ("""You step into the middle of the room and are teleported to a higher plane
+                   
+                   The Final Boss fight will now commence...""")
+            god = Enemy("God", 60, 20, 3, 2)
+            Battle(player, god)
+
+            #if player["HP"] < 0:
+                #break
+            #else:
+                #continue
+
+# Forest adventure and choices
+if Adv_choice == "forest":
+    print("You have entered the Forest!")
+    
+    path_Choice = input("you have 2 paths you can go down: Darkness - Flowers")
+
+    if path_Choice == "darkness":
+        print("You walk down the path and are attack by a Troll")
+        
+        #Create & Battle Troll enemy
+        Troll = Enemy("Troll", 25, 10, 3, 2)
+        Battle(player, Troll)
+
+
+        #This will just exit the player from the game if he loses all hp...
+        # -- Not sure if this is necassary or if the battle function has it built in
+        #if player["HP"] < 0:
+        #    break
+        #else:
+        #    continue
+        
+        
