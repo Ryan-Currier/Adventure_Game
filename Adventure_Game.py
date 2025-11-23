@@ -41,7 +41,7 @@ class Classes():
 
 
 def Battle (player, enemy):
-    print("Prepare to Battle!")
+    print(f"Prepare to battle the {enemy.name}!")
     
     #while loop for simple turn based combat
     while player.stats["HP"] > 0 and enemy.stats["HP"] > 0:
@@ -53,7 +53,7 @@ def Battle (player, enemy):
                 print(f" - {move} ({player.stats["Moves"][move]} DMG)")
                 
             #input your move
-            move_choice = input("Choose your move:".title())
+            move_choice = input("Choose your move:".title().capitalize())
 
             #Make sure players input is a real & valid move
             if move_choice not in player.stats["Moves"]:
@@ -91,6 +91,7 @@ def Battle (player, enemy):
             if player.stats["HP"] <= 0:
                 print("You died :(")
                 break
+            
                 
             
                  
@@ -148,7 +149,7 @@ while True:
     Adv_choice = input(str("\nYou have 2 paths - Castle or Forest ").lower())
 
 
-    #Cave Adventure & All Choices
+    #Castle Adventure & All Choices
 
     if Adv_choice == "castle":
         print("you enter the Castle!")
@@ -158,27 +159,27 @@ while True:
         if room_choice == "bookshelf":
             print("\nyou try to pick up a book, but the bookshelf falls and crushes you")
             #so they can exit the while loop
-            Quit = input(str("""\nYOU DIED :(
-                                press Q to Quit - """).lower())
+            Quit = input("Press q to quit - ").lower()
+            if Quit == "q":
+                break
+            else:
+                continue
         
             if Quit == "q":
                 break
         elif room_choice == "chest":
             trap_choice = input(str(""" you obtained a gold key!
-                                    But when you stashed the key a trapdoor opened under you
-                                    you wake up in a pool of water you can go down 2 paths
-                                    stairs
-                                    pool
-                                    """).lower())
+                                    you see 2 paths ahead of you: stairs - pool """).lower())
             if trap_choice == "pool":
                 print("you enter the pool and get killed by a merrow")
 
                 #so they can exit the while loop
-                Quit = input(str("""YOU DIED :(
-                press Q to Quit""").lower())
-        
+                Quit = input("Press q to quit - ").lower()
                 if Quit == "q":
                     break
+                else:
+                    continue
+        
             elif trap_choice == "stairs":
                 print ("""you have reached a big door with a small golden lock. You enter your own gold key the door swings open into a big room lit by blue flames
                        you have to fight a merrow to escape alive!""")
@@ -188,45 +189,36 @@ while True:
                 #Fighting the enemy
                 Battle(player, merrow)
 
-                if player.stats["HP"] < 0:
-                    Quit = input(str("""YOU DIED :(
-                    press Q to Quit""").lower())
-        
+                if merrow.stats["HP"] < 0:
+                    print("You have defeated the Enemy and can proceed further into the castle!")
+                else:
+                    Quit = input("Press q to quit - ").lower()
                     if Quit == "q":
                         break
-                else:
-                    continue
+                    else:
+                        continue
+                    
                 print ("""You step into the middle of the room and are teleported to a higher plane
                    
                         The Final Boss fight will now commence...""")
                 god = Enemy("God", 60, 20, 3, 2)
                 Battle(player, god)
 
-
                 if god.stats["HP"] < 0:
                     print("You have defeated the final boss and completed the Castle Adventure!")
                 else:
-                    Quit = input("Press q to quit").lower()
+                    Quit = input("Press q to quit - ").lower()
                     if Quit == "q":
                         break
                     else:
                         continue
-#                if player["HP"] < 0:
- #                   Quit = input(str("""YOU DIED :(
-  #                  press Q to Quit""").lower())
-   #     
-    #                if Quit == "q":
-     #                   break
-      #          else:
-       #             continue
 
-         #       print("You have defeated the final boss and completed the Castle Adventure!")
 
-    # Forest adventure and choices
+    #Forest adventure and choices
     if Adv_choice == "forest":
         print("You have entered the Forest!")
     
-        path_Choice = input("you have 2 paths you can go down: Darkness - Flowers")
+        path_Choice = input("you have 2 paths you can go down: Darkness - Flowers \n")
 
         if path_Choice == "darkness":
             print("You walk down the path and are attack by a Troll")
@@ -235,31 +227,39 @@ while True:
             Troll = Enemy("Troll", 20, 10, 3, 2)
             Battle(player, Troll)
 
+            if Troll.stats["HP"] < 0:
+                print("You have defeated the Enemy and can proceed further into the Darkness!")
+            else:
+                Quit = input("Press q to quit - ").lower()
+                if Quit == "q":
+                    break
+                else:
+                    continue
 
-            #This will just exit the player from the game if he loses all hp...
-            # -- Not sure if this is necassary or if the battle function has it built in
-            #if player["HP"] < 0:
-            #    break
-            #else:
-            #    continue
-        
-            print ("""You step over the defeated troll and walk deeper into the forest
-                    You find the camp of the trolls...
-                    you enter the camp and the King Troll appears!""")
             King_Troll = Enemy("King Troll", 40, 15, 3, 2)
             Battle(player, King_Troll)
 
-            #if player["HP"] < 0:
-                #break
-
-            print ("""You step into the middle of the camp and are teleported to a higher plane
-                    The Final Boss fight will now commence...""")       
+            if King_Troll.stats["HP"] < 0:
+                print("You have defeated the Enemy and can proceed to the Final Boss!")
+            else:
+                Quit = input("Press q to quit - ").lower()
+                if Quit == "q":
+                    break
+                else:
+                    continue
+       
             god = Enemy("God", 60, 20, 3, 2)
             Battle(player, god)
-            #if player["HP"] < 0:
-                #break
-            #else:
-                #continue
+
+            #Exit Game Or Continue
+            if god.stats["HP"] < 0:
+                print("You have defeated the final boss and completed the Castle Adventure!")
+            else:
+                Quit = input("Press q to quit - ").lower()
+                if Quit == "q":
+                    break
+                else:
+                    continue
 
             print("You have defeated the final boss and completed the Forest Adventure!")
 
@@ -270,35 +270,35 @@ while True:
             Giant_Bee = Enemy("Giant Bee", 20, 10, 3, 2)
             Battle(player, Giant_Bee)
 
-            #if player["HP"] < 0:
-                #break
-            #else:
-                #continue
-
-            print ("""You step over the defeated Giant Bee and walk deeper into the forest
-                   You find a beehive hanging from a tree...
-                   you approach the beehive the queen bee appears!""")
+            if Giant_Bee.stats["HP"] < 0:
+                print("You have defeated the Enemy and can proceed further into the Flowers!")
+            else:
+                Quit = input("Press q to quit - ").lower()
+                if Quit == "q":
+                    break
+                else:
+                    continue
         
-            Queen_Bee = Enemy("Wasp", 45, 15, 3, 2)
+            Queen_Bee = Enemy("Queen Bee", 45, 15, 3, 2)
             Battle(player, Queen_Bee)
 
-            #if player["HP"] < 0:
-                #break
-
-            print ("""You step into the middle of the clearing and are teleported to a higher plane
-                    The Final Boss fight will now commence...""")
+            if Queen_Bee.stats["HP"] < 0:
+                print("You have defeated the Enemy and can proceed to the Final Boss!")
+            else:
+                Quit = input("Press q to quit - ").lower()
+                if Quit == "q":
+                    break
+                else:
+                    continue
         
             god = Enemy("God", 60, 20, 3, 2)
             Battle(player, god)
-            #if player["HP"] < 0:
-                #break
-        #else:
-            #continue
+
 
             if god.stats["HP"] < 0:
                 print("You have defeated the final boss and completed the Forest Adventure!")
             else:
-                Quit = input("Press q to quit").lower()
+                Quit = input("Press q to quit - ").lower()
                 if Quit == "q":
                     break
                 else:
